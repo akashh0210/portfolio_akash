@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Class-based dark mode — matches next-themes attribute="class" */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* ── Design tokens (DESIGN.md §2) ────────────────────────────────── */
+:root {
+  /* Brand palette — light */
+  --bg: #fbfbf9;
+  --surface: #ffffff;
+  --text: #16161a;
+  --text-muted: #6b6b72;
+  --border: #e6e6e1;
+  --accent: #2f4858;
+  --accent-weak: #eef1f2;
+  --metric: #16161a;
+
+  /* shadcn semantic aliases → design tokens */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --popover: var(--surface);
+  --popover-foreground: var(--text);
+  --primary: var(--text);
+  --primary-foreground: var(--bg);
+  --secondary: var(--accent-weak);
+  --secondary-foreground: var(--text);
+  --muted: var(--accent-weak);
+  --muted-foreground: var(--text-muted);
+  --accent-foreground: var(--bg);
+  --destructive: oklch(0.577 0.245 27.325);
+  --input: var(--border);
+  --ring: var(--accent);
+  --radius: 0.5rem;
+
+  /* Fonts (Phase 1 will swap to Hanken Grotesk + Inter + Geist Mono) */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+}
+
+.dark {
+  /* Brand palette — dark */
+  --bg: #0c0c0e;
+  --surface: #141417;
+  --text: #f7f7f5;
+  --text-muted: #9b9ba3;
+  --border: #232327;
+  --accent: #8fb0c4;
+  --accent-weak: #16202a;
+  --metric: #f7f7f5;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
