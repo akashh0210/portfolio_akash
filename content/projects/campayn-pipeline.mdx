@@ -1,0 +1,57 @@
+---
+title: "Campayn — Automated Brand Discovery Pipeline"
+slug: "campayn-pipeline"
+tier: "featured"
+order: 1
+status: "Shipped"
+summary: "An end-to-end system that finds, qualifies, and reaches out to D2C brands automatically — eliminating weeks of manual research per campaign."
+role: "AI PM · builder"
+timeframe: "Jun 2026"
+stack: ["Python", "Claude", "Lovable", "Cursor", "Playwright"]
+tags: ["automation", "pipelines", "growth", "outreach"]
+metric:
+  value: "v1.4"
+  label: "qualified-brand pipeline shipped"
+outcome: "Shipped v1.4 — expanded the qualified-brand pool and a compliance-checked outreach UI replacing manual Google-sheet research."
+links:
+  live: "https://campayn-piper.lovable.app"
+featured_order: 1
+draft: false
+---
+
+## Problem
+
+Campayn's brand partnerships team was spending 3–4 hours per campaign manually searching for D2C brands across Google, Instagram, and LinkedIn, copying data into sheets, checking brand fit, and drafting cold outreach — before a single email went out.
+
+The process didn't scale. As the campaign volume grew, the research bottleneck grew with it. There was no system, just spreadsheets and memory.
+
+## Hypothesis
+
+If I could automate brand discovery, qualification, and first-touch outreach drafting into a single pipeline, a two-person team could process 10x more brands per week — and because every decision would be logged, we'd also accumulate a dataset for improving qualification criteria over time.
+
+The bet: Claude's structured output is good enough to extract brand fit signals from unstructured web pages with acceptable accuracy. The risk: false positives waste outreach bandwidth; false negatives lose real opportunities.
+
+## What I built
+
+**v1.0 — Discovery scraper (Week 1)**
+A Python + Playwright crawler that takes a seed keyword (e.g. "sustainable skincare India") and walks Google, Instagram bio links, and Tracxn to produce a raw list of D2C brand URLs.
+
+**v1.1 — Claude qualification layer (Week 2)**
+Each URL is passed through a Claude prompt that extracts: brand name, product category, estimated GMV tier, founder-led signals, and a fit score (0–10) based on criteria I defined with the Campayn team. Output is structured JSON validated with Pydantic.
+
+**v1.2 — Deduplication + CRM export (Week 3)**
+Added fuzzy-match deduplication (same brand appearing under multiple domains) and a CSV export matching Campayn's HubSpot field structure.
+
+**v1.3 — Outreach draft generation**
+Claude drafts a personalized cold email per brand using the extracted signals. The draft surfaces brand-specific hooks: a recent product launch, a founder quote from their About page, or a gap in their current partnership mix.
+
+**v1.4 — Compliance-checked outreach UI (Jun 2026)**
+Built a Lovable-generated React UI that lets the team review, edit, and approve each draft before sending. Added a Claude-powered compliance check (no misleading claims, no regulated health language) that flags drafts before they leave the queue.
+
+## Outcome & learning
+
+Shipped v1.4 by end of June. The pipeline now handles the full workflow from seed keyword to approved outreach draft. Manual research dropped from ~4 hours to under 20 minutes per campaign run.
+
+What I'd do differently: I scoped the qualification prompt too narrowly in v1.1 — it missed brands that don't have an obvious "D2C" signal on their homepage but are clearly relevant once you look at their Instagram. In v2, I'd add a secondary social-proof pass before scoring.
+
+The bigger lesson: the hard part of AI pipelines isn't the model call — it's defining what "qualified" means precisely enough that the model's output is trustable. That definition took three rounds of review with the team and is now the real IP of the system.

@@ -3,7 +3,7 @@ import { Container } from "@/components/Container";
 
 const SOCIAL_LINKS = [
   { href: "https://github.com/akashh0210", label: "GitHub" },
-  { href: "https://linkedin.com/in/sk-akash-ali", label: "LinkedIn" },
+  { href: "https://www.linkedin.com/in/sk-akash-ali-5a74b724b/", label: "LinkedIn" },
   { href: "mailto:akash102502@gmail.com", label: "Email" },
 ] as const;
 
