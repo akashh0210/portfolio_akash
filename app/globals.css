@@ -5,7 +5,9 @@
 /* Class-based dark mode — matches next-themes attribute="class" */
 @custom-variant dark (&:is(.dark *));
 
+/* ── Tailwind theme: map CSS vars to utility classes ─────────────── */
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -20,17 +22,33 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-weak: var(--accent-weak);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-metric: var(--metric);
+
+  /* Fonts */
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-heading: var(--font-heading);
+
+  /* Radius */
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* ── Type scale (DESIGN.md §3) ───────────────────────────────────── */
+@theme {
+  --text-hero: clamp(2.6rem, 7vw, 4.6rem);
+  --text-metric: clamp(2.0rem, 4vw, 3.0rem);
+  --text-h1: 2.2rem;
+  --text-h2: 1.6rem;
+  --text-h3: 1.25rem;
+  --text-eyebrow: 0.72rem;
 }
 
 /* ── Design tokens (DESIGN.md §2) ────────────────────────────────── */
@@ -45,7 +63,7 @@
   --accent-weak: #eef1f2;
   --metric: #16161a;
 
-  /* shadcn semantic aliases → design tokens */
+  /* shadcn semantic aliases */
   --background: var(--bg);
   --foreground: var(--text);
   --card: var(--surface);
@@ -64,10 +82,10 @@
   --ring: var(--accent);
   --radius: 0.5rem;
 
-  /* Fonts (Phase 1 will swap to Hanken Grotesk + Inter + Geist Mono) */
-  --font-sans: var(--font-geist-sans);
+  /* Fonts — references CSS vars injected by next/font on <html> */
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-geist-sans);
+  --font-heading: var(--font-hanken);
 }
 
 .dark {
@@ -88,6 +106,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    line-height: 1.65;
   }
   html {
     @apply font-sans;
