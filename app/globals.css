@@ -100,6 +100,22 @@
   --metric: #f7f7f5;
 }
 
+/* ── Motion tokens (DESIGN.md §6) ────────────────────────────────── */
+@theme {
+  --animate-fade-in-up: fade-in-up 0.45s ease-out both;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -110,5 +126,12 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* Smooth theme color transition (no-preference only) */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    transition: background-color 0.2s ease, color 0.15s ease;
   }
 }

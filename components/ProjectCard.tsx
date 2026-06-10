@@ -24,7 +24,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
         href={href}
         className={cn(
           "group flex flex-col gap-3 rounded-lg border border-border bg-card p-5",
-          "transition-all duration-150 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-sm",
+          "hover:border-accent/40 motion-safe:transition-all motion-safe:duration-150 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-sm",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         )}
       >
@@ -56,7 +56,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
 
         <div className="mt-auto flex items-end justify-between">
           <MetricBlock value={project.metric.value} label={project.metric.label} size="sm" />
-          <span className="font-mono text-xs text-accent transition-transform duration-150 group-hover:translate-x-0.5">
+          <span className="font-mono text-xs text-accent motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover:translate-x-0.5">
             Read →
           </span>
         </div>
@@ -69,7 +69,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
       href={href}
       className={cn(
         "group flex flex-col gap-5 rounded-lg border border-border p-6",
-        "transition-all duration-150 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md",
+        "hover:border-accent/40 motion-safe:transition-all motion-safe:duration-150 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         "sm:p-8"
       )}
@@ -113,7 +113,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
             </span>
           ))}
         </div>
-        <span className="font-mono text-sm text-accent transition-transform duration-150 group-hover:translate-x-0.5">
+        <span className="font-mono text-sm text-accent motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover:translate-x-0.5">
           Read →
         </span>
       </div>
