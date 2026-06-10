@@ -33,7 +33,7 @@ export function Hero() {
             View work
           </Link>
           <Link
-            href="mailto:akash102502@gmail.com"
+            href="/contact"
             className={cn(
               "rounded-md border border-border px-5 py-2.5 font-mono text-sm font-medium text-foreground",
               "transition-colors hover:border-accent hover:text-accent",
