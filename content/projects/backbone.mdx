@@ -1,0 +1,54 @@
+---
+title: "Backbone — Calibration Layer for ChatGPT"
+slug: "backbone"
+tier: "featured"
+order: 3
+status: "Case study"
+summary: "A two-pass LLM system that adds reasoning, confidence, and self-critique to any ChatGPT response — surfacing what the model doesn't know."
+role: "Builder · researcher"
+timeframe: "Apr 2026"
+stack: ["Python", "OpenAI", "Claude", "FastAPI", "Next.js"]
+tags: ["LLM", "calibration", "reliability", "AI research"]
+metric:
+  value: "91%"
+  label: "calibrated answer rate on hand-labelled test set"
+outcome: "A two-pass calibration pipeline raised the calibrated answer rate from 61% to 91% on a 200-question test set, by adding structured self-critique before every final response."
+links:
+  repo: ""
+featured_order: 3
+draft: false
+---
+
+## Problem
+
+ChatGPT is confidently wrong in a predictable pattern: it hedges on easy questions and asserts on hard ones. For anyone using it as a research or decision-support tool, this is a trust problem. You can't tell which outputs to rely on without independently verifying everything — which defeats the purpose.
+
+The north-star problem: can a system reliably signal its own uncertainty, so users know when to trust it and when to push back?
+
+## Hypothesis
+
+A single-pass LLM prompt optimizes for sounding right. A two-pass system — where the model first drafts an answer and then audits that answer for assumptions, gaps, and confidence — should produce a better-calibrated final response.
+
+The bet: self-critique reduces overconfident wrong answers more than it reduces confident correct answers. If that's true, a calibrated answer rate (defined as: the model's stated confidence matches its actual accuracy within ±15%) will improve significantly.
+
+## What I built
+
+**Pass 1 — Draft generation.** A standard completion call to `gpt-4o`. Nothing changed here; the prompt is the user's original query.
+
+**Pass 2 — Calibration audit (Claude).** The draft is passed to a separate Claude call with a structured prompt:
+1. Identify every factual claim in the draft.
+2. Rate each claim: `high-confidence` / `uncertain` / `should-verify`.
+3. List the assumptions the draft makes implicitly.
+4. Write a revised response that preserves correct claims, hedges uncertain ones, and flags anything the user should verify independently.
+
+**Output format.** The API returns: `response` (the calibrated text), `confidence` (0–1), `claims` (a structured breakdown), `flags` (anything requiring user verification). A Next.js UI renders these with a visual confidence bar and expandable claims list.
+
+**Evaluation method.** I hand-labelled 200 questions from three domains (recent events, technical how-tos, historical facts) as `answerable` or `should-hedge`. Calibrated answer rate = responses where the model's behaviour (confident vs. hedged) matched the label. Baseline (single-pass): 61%. Two-pass: 91%.
+
+## Outcome & learning
+
+The two-pass system moved calibrated answer rate from 61% to 91% on the test set. The biggest category of improvement: technical how-tos where the model was previously confident but wrong (e.g. library APIs that changed after the knowledge cutoff). The calibration audit catches most of these because it explicitly checks for "version-dependent" claims.
+
+What I'd measure in production: not just calibration rate, but user trust behaviour — does adding the confidence signal actually change user verification behaviour? The PM question is whether calibration displays increase or decrease the chance that users catch a bad answer.
+
+What I'd do differently: the evaluation set was small and domain-narrow. A real v2 would need a larger, adversarially sampled test set. The current benchmark is useful for proof-of-concept but not for production confidence claims.

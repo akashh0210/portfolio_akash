@@ -1,0 +1,55 @@
+---
+title: "FreechargeBiz — AI Card Recommendation Engine"
+slug: "freecharge-cardmatch"
+tier: "featured"
+order: 2
+status: "PRD"
+summary: "A 5-layer AI recommendation engine that explains its reasoning — because for financial products, the explanation is the product."
+role: "Product Manager"
+timeframe: "May 2026"
+stack: ["Claude", "TypeScript", "Next.js", "Figma", "Python"]
+tags: ["fintech", "recommendation", "AI", "PRD"]
+metric:
+  value: "5-layer"
+  label: "AI recommendation engine scoped end-to-end"
+outcome: "Delivered a full PRD, RICE-scored backlog, and live prototype for a 5-layer AI card recommendation engine with explainability at its core."
+links:
+  live: ""
+  repo: ""
+featured_order: 2
+draft: false
+---
+
+## Problem
+
+FreechargeBiz's SME customers were leaving money on the table. The platform offered several co-branded credit and debit card products, but card recommendations were purely rule-based: segment by turnover tier, show the tier's default card. No personalisation. No explanation.
+
+The result: conversion was low and support tickets were high — customers didn't understand why they were shown a particular card, and didn't trust the recommendation enough to apply.
+
+## Hypothesis
+
+If we introduced an AI layer that (a) matched cards to real business signals in a customer's transaction history and (b) surfaced a plain-language explanation for each match, conversion would rise because trust would rise. The thesis: AI explains the recommendation; it never makes it.
+
+The constraint is real: in financial services you cannot let an LLM silently decide what credit product someone sees. The model generates the explanation and ranks the evidence; a deterministic rules engine makes the final eligibility call.
+
+## What I built
+
+**Layer 1 — Signal extraction.** A Python pipeline pulls 12-month transaction history (category mix, average ticket, seasonal variance) and maps it to nine intent signals (e.g. "fuel-heavy spend", "frequent international transfers").
+
+**Layer 2 — Eligibility engine (rules).** Hard eligibility criteria (turnover thresholds, GST status, account age) evaluated deterministically — no ML here. The engine produces a pass/fail per card SKU.
+
+**Layer 3 — AI ranker + explainer.** For eligible cards, Claude receives the signal vector and the card's key features. It ranks the eligible set by fit and writes a one-paragraph plain-language explanation per card: what signal triggered the match and why it matters for this customer's business.
+
+**Layer 4 — Explanation guardrails.** A second Claude pass audits each explanation for regulatory red flags: no guaranteed returns, no unverified claims, no language suggesting the card was "selected for you" by a machine rather than matched by criteria.
+
+**Layer 5 — Prototype UI.** A Next.js prototype shows the ranked cards, each with the explanation below it, a confidence indicator, and a "Why am I seeing this?" expandable. Figma-designed, TypeScript-typed.
+
+The PRD included a full MoSCoW breakdown, RICE-scored stories, rollout plan (A/B gated on 10% of SME logins), and success metrics (apply rate, form completion, support ticket volume).
+
+## Outcome & learning
+
+Delivered the PRD and prototype to stakeholder review. The AI explanation layer was the most debated scope item — legal initially wanted it removed. The winning argument was framing it as a mandatory disclosure layer, not a marketing layer: every recommendation now has an auditable, human-readable reason on file.
+
+Key learning: in regulated domains, explainability is not a feature — it's what makes everything else legally defensible. That framing shift unlocked the whole project.
+
+The biggest gap in v1: the signal extraction pipeline was designed for clean transaction data. In production, a significant portion of SME accounts have sparse or mislabelled transaction categories. v2 should add a confidence gate: if signals are thin, show fewer cards with a "we need more data" message rather than an uncertain match.

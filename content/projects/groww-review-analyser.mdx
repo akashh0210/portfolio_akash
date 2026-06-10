@@ -1,0 +1,35 @@
+---
+title: "Groww App Review Insights Analyser"
+slug: "groww-review-analyser"
+tier: "build"
+order: 6
+status: "Shipped"
+summary: "A multi-tool pipeline that turns thousands of Play Store reviews into a structured product-insight pulse in under a minute."
+role: "Builder"
+timeframe: "Mar 2026"
+stack: ["TypeScript", "FastAPI", "Groq", "Streamlit", "MCP"]
+tags: ["analytics", "NLP", "product-intelligence", "MCP"]
+metric:
+  value: "60s"
+  label: "review-to-product-insight pulse time"
+outcome: "Shipped a pipeline processing 5,000+ reviews into structured themes, severity buckets, and PM-ready insight cards in under 60 seconds."
+links:
+  repo: ""
+draft: false
+---
+
+## Problem
+
+App review analysis is a PM's least favourite chore: high volume, low signal density, and by the time you've read 300 reviews you've forgotten the first 200. Groww's Play Store page accumulates hundreds of reviews weekly — extracting product signals from them manually is a full afternoon's work.
+
+## Hypothesis
+
+A structured pipeline — scrape, cluster, summarise, prioritise — could reduce time-to-insight from hours to under a minute while surfacing themes a manual read would miss (e.g. a specific notification bug appearing in 12% of 1-star reviews).
+
+## What I built
+
+A TypeScript + FastAPI pipeline scrapes reviews, passes them through a Groq-powered clustering step (theme extraction and severity classification), and generates a Streamlit dashboard with PM-ready insight cards. An MCP integration allows Claude to query the insight database conversationally — "what are the top 3 complaints this week?" returns a structured answer in seconds.
+
+## Outcome & learning
+
+5,000+ reviews processed in under 60 seconds. The MCP integration was the highest-leverage addition — it turned a reporting dashboard into a conversational tool, which made it 10x more likely to actually be used. Lesson: build the interface your user will actually open, not the one that's easiest to ship.

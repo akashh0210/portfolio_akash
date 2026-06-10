@@ -1,0 +1,33 @@
+---
+title: "Zomato Restaurant Recommender"
+slug: "zomato-recommender"
+tier: "build"
+order: 4
+status: "Shipped"
+summary: "Personalized restaurant discovery via a FastAPI + Groq pipeline, surfacing relevant results from a Zomato dataset in under 2 seconds."
+role: "Builder"
+timeframe: "Mar 2026"
+stack: ["Next.js", "FastAPI", "Groq", "Python", "TypeScript"]
+tags: ["recommendation", "search", "NLP"]
+metric:
+  value: "< 2s"
+  label: "end-to-end personalized recommendation"
+outcome: "Shipped a full-stack recommender serving personalized results from a 10,000-restaurant dataset with sub-2-second latency via Groq inference."
+draft: false
+---
+
+## Problem
+
+Standard keyword search for restaurant discovery returns low-quality results for natural language queries like "somewhere quiet for a work lunch with decent vegetarian options near Indiranagar." The Zomato dataset is rich — cuisine, cost, ratings, locality — but keyword search ignores most of it.
+
+## Hypothesis
+
+A lightweight embedding + LLM re-ranking pipeline on top of the structured Zomato dataset would return meaningfully better results for natural-language queries without requiring a large-scale ML training run.
+
+## What I built
+
+A FastAPI backend parses the query with Groq (structured extraction: cuisine preference, price tier, location, occasion signals), filters the dataset, and re-ranks candidates by a weighted score. A Next.js frontend streams results with a confidence explanation per recommendation.
+
+## Outcome & learning
+
+Sub-2-second latency end-to-end, which required moving the embedding step from OpenAI to Groq. The pipeline handles compound queries well but struggles with implicit preferences ("budget-friendly" means different things by locality). A user preference profile would fix this — useful for v2.
