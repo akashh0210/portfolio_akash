@@ -42,6 +42,17 @@ export function Hero() {
           >
             Get in touch
           </Link>
+          <a
+            href="/resume.pdf"
+            download="Akash_Ali_Resume.pdf"
+            className={cn(
+              "rounded-md border border-border px-5 py-2.5 font-mono text-sm font-medium text-muted-foreground",
+              "transition-colors hover:border-accent hover:text-accent",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            )}
+          >
+            Download resume
+          </a>
         </div>
       </Container>
     </section>

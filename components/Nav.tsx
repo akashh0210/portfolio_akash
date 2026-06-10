@@ -52,6 +52,17 @@ export function Nav() {
                 </Link>
               );
             })}
+            <a
+              href="/resume.pdf"
+              download="Akash_Ali_Resume.pdf"
+              className={cn(
+                "ml-1 rounded border border-border px-2.5 py-1 font-mono text-xs text-muted-foreground",
+                "transition-colors hover:border-accent hover:text-accent",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              )}
+            >
+              Resume
+            </a>
             <ThemeToggle />
           </div>
         </nav>
