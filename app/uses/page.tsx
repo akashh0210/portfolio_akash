@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 
 export const metadata: Metadata = {
-  title: "Uses — Sk Akash Ali",
+  title: "Uses",
   description:
     "The actual stack, tools, and workflow I use for AI product work and full-stack building.",
+  openGraph: {
+    title: "Uses — Sk Akash Ali",
+    description: "Stack, tools, and workflow for AI product work and full-stack building.",
+    url: "/uses",
+  },
 };
 
 const SECTIONS = [

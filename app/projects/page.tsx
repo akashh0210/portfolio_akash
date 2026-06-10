@@ -4,9 +4,14 @@ import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { Container } from "@/components/Container";
 
 export const metadata: Metadata = {
-  title: "Work — Sk Akash Ali",
+  title: "Work",
   description:
     "Case studies and shipped builds by Sk Akash Ali: AI PM and builder.",
+  openGraph: {
+    title: "Work — Sk Akash Ali",
+    description: "Case studies and shipped builds: AI PM and builder.",
+    url: "/projects",
+  },
 };
 
 export default function ProjectsPage() {

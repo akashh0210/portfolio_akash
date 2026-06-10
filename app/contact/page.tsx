@@ -3,9 +3,14 @@ import { Container } from "@/components/Container";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact — Sk Akash Ali",
+  title: "Contact",
   description:
     "Get in touch with Sk Akash Ali for AI PM roles, consulting, or collaboration.",
+  openGraph: {
+    title: "Contact — Sk Akash Ali",
+    description: "Get in touch for AI PM roles, consulting, or collaboration.",
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {

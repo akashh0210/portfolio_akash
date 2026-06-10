@@ -52,15 +52,15 @@ export default function Home() {
               <p className="font-mono text-eyebrow uppercase tracking-[0.12em] text-muted-foreground">
                 Featured
               </p>
-              <p className="mt-1 font-heading text-h2 font-semibold text-foreground">
+              <h2 className="mt-1 font-heading text-h2 font-semibold text-foreground">
                 Case studies
-              </p>
+              </h2>
             </div>
             <Link
               href="/projects"
               className={cn(
-                "font-mono text-sm text-accent transition-transform duration-150",
-                "hover:translate-x-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                "font-mono text-sm text-accent motion-safe:transition-transform motion-safe:duration-150",
+                "motion-safe:hover:translate-x-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
               )}
             >
               View all →
@@ -83,9 +83,9 @@ export default function Home() {
               <p className="font-mono text-eyebrow uppercase tracking-[0.12em] text-muted-foreground">
                 Also shipped
               </p>
-              <p className="mt-1 font-heading text-h2 font-semibold text-foreground">
+              <h2 className="mt-1 font-heading text-h2 font-semibold text-foreground">
                 Builds
-              </p>
+              </h2>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
