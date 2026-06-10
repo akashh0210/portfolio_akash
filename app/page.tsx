@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getFeaturedProjects, getAllProjects } from "@/lib/projects";
 import { Hero } from "@/components/Hero";
 import { WhatIDo } from "@/components/WhatIDo";
@@ -7,12 +8,39 @@ import { CurrentlyBuilding } from "@/components/CurrentlyBuilding";
 import { Container } from "@/components/Container";
 import { cn } from "@/lib/utils";
 
+export const metadata: Metadata = {
+  title: { absolute: "Sk Akash Ali — AI PM & Builder" },
+  description:
+    "Portfolio of Sk Akash Ali: AI PM and builder. Case studies, shipped products, and proof of work.",
+  openGraph: {
+    title: "Sk Akash Ali — AI PM & Builder",
+    description: "Products that move metrics. Case studies, shipped work, and proof of craft.",
+    url: "/",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sk Akash Ali",
+  jobTitle: "AI Product Manager & Builder",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  sameAs: [
+    "https://github.com/akashh0210",
+    "https://www.linkedin.com/in/sk-akash-ali-5a74b724b/",
+  ],
+};
+
 export default function Home() {
   const featured = getFeaturedProjects();
   const builds = getAllProjects().filter((p) => p.tier === "build");
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Hero />
       <WhatIDo />
 

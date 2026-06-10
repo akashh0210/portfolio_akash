@@ -23,10 +23,24 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Sk Akash Ali — AI PM & Builder",
+  metadataBase: new URL(BASE),
+  title: {
+    default: "Sk Akash Ali — AI PM & Builder",
+    template: "%s — Sk Akash Ali",
+  },
   description:
-    "Portfolio of Sk Akash Ali: AI products, case studies, and shipped work.",
+    "Portfolio of Sk Akash Ali: AI PM and builder. Case studies, shipped products, and proof of work.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Sk Akash Ali",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

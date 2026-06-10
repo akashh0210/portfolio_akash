@@ -18,8 +18,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const project = getProjectBySlug(slug);
   if (!project) return {};
   return {
-    title: `${project.title} — Sk Akash Ali`,
+    title: project.title,
     description: project.summary,
+    openGraph: {
+      title: `${project.title} — Sk Akash Ali`,
+      description: project.summary,
+      url: `/projects/${slug}`,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} — Sk Akash Ali`,
+      description: project.summary,
+    },
   };
 }
 

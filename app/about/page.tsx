@@ -4,9 +4,26 @@ import { Container } from "@/components/Container";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "About — Sk Akash Ali",
+  title: "About",
   description:
     "AI PM and builder based in Bengaluru. I structure messy problems into crisp specs, then write the code to validate the solution.",
+  openGraph: {
+    title: "About — Sk Akash Ali",
+    description: "AI PM and builder based in Bengaluru.",
+    url: "/about",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sk Akash Ali",
+  jobTitle: "AI Product Manager & Builder",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  sameAs: [
+    "https://github.com/akashh0210",
+    "https://www.linkedin.com/in/sk-akash-ali-5a74b724b/",
+  ],
 };
 
 const SHIPPING_LOG = [
@@ -47,6 +64,10 @@ const LINKS = [
 export default function AboutPage() {
   return (
     <div className="py-16 sm:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Container size="reading">
         <header>
           <p className="font-mono text-eyebrow uppercase tracking-[0.12em] text-muted-foreground">
