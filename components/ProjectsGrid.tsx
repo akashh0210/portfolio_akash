@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ProjectCard } from "@/components/ProjectCard";
+import { PmArtifactCard } from "@/components/PmArtifactCard";
 import type { Project } from "@/lib/schema";
 
 const FILTER_OPTIONS = [
   { value: "all", label: "All" },
-  { value: "featured", label: "Featured" },
+  { value: "featured", label: "Case studies" },
   { value: "build", label: "Shipped builds" },
+  { value: "prd", label: "PM work" },
 ] as const;
 
 type FilterValue = (typeof FILTER_OPTIONS)[number]["value"];
@@ -21,7 +23,11 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
   const [filter, setFilter] = useState<FilterValue>("all");
 
   const visible =
-    filter === "all" ? projects : projects.filter((p) => p.tier === filter);
+    filter === "all"
+      ? projects
+      : filter === "prd"
+      ? projects.filter((p) => p.tier === "prd" || p.status === "PRD")
+      : projects.filter((p) => p.tier === filter);
 
   return (
     <div>
@@ -38,7 +44,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
             type="button"
             onClick={() => setFilter(value)}
             className={cn(
-              "rounded-full border px-4 py-1.5 font-mono text-xs transition-colors",
+              "rounded-full border px-4 py-1.5 font-mono text-xs motion-safe:transition-colors",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               filter === value
                 ? "border-accent bg-accent text-background"
@@ -52,6 +58,12 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
 
       {visible.length === 0 ? (
         <p className="text-sm text-muted-foreground">No projects match this filter.</p>
+      ) : filter === "prd" ? (
+        <div className="flex flex-col gap-3">
+          {visible.map((project) => (
+            <PmArtifactCard key={project.slug} project={project} />
+          ))}
+        </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((project) => (

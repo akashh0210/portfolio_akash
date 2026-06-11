@@ -1,10 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getFeaturedProjects, getAllProjects } from "@/lib/projects";
+import { getFeaturedProjects, getAllProjects, getPmProjects } from "@/lib/projects";
 import { Hero } from "@/components/Hero";
 import { WhatIDo } from "@/components/WhatIDo";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CurrentlyBuilding } from "@/components/CurrentlyBuilding";
+import { PmArtifactCard } from "@/components/PmArtifactCard";
 import { Container } from "@/components/Container";
 import { cn } from "@/lib/utils";
 
@@ -34,6 +35,7 @@ const jsonLd = {
 export default function Home() {
   const featured = getFeaturedProjects();
   const builds = getAllProjects().filter((p) => p.tier === "build");
+  const pmWork = getPmProjects();
 
   return (
     <>
@@ -91,6 +93,32 @@ export default function Home() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {builds.map((project) => (
                 <ProjectCard key={project.slug} project={project} variant="compact" />
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* PM Work — PRDs & Teardowns */}
+      {pmWork.length > 0 && (
+        <section className="border-t border-border py-16">
+          <Container>
+            <div className="mb-8">
+              <p className="font-mono text-eyebrow uppercase tracking-[0.12em] text-muted-foreground">
+                PM Artifacts
+              </p>
+              <h2 className="mt-1 font-heading text-h2 font-semibold text-foreground">
+                PRDs &amp; Teardowns
+              </h2>
+              <p className="mt-2 max-w-[520px] text-sm leading-6 text-muted-foreground">
+                Product thinking on paper — full PRDs, market teardowns, and
+                structured analyses. The documents behind the decisions.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              {pmWork.map((project) => (
+                <PmArtifactCard key={project.slug} project={project} />
               ))}
             </div>
           </Container>

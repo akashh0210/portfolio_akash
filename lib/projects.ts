@@ -38,6 +38,12 @@ export function getFeaturedProjects(): Project[] {
     .sort((a, b) => (a.featured_order ?? a.order) - (b.featured_order ?? b.order));
 }
 
+export function getPmProjects(): Project[] {
+  return getAllProjects()
+    .filter((p) => p.tier === "prd" || p.status === "PRD")
+    .sort((a, b) => a.order - b.order);
+}
+
 export function getProjectBySlug(slug: string): Project | undefined {
   return getAllProjects().find((p) => p.slug === slug);
 }

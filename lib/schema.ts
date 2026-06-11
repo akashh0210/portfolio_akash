@@ -10,13 +10,14 @@ const linksSchema = z
     live: z.string().optional(),
     repo: z.string().optional(),
     writeup: z.string().optional(),
+    document: z.string().optional(), // PDF or doc URL for PRD/teardown artefacts
   })
   .optional();
 
 export const projectSchema = z.object({
   title: z.string(),
   slug: z.string().optional(),
-  tier: z.enum(["featured", "build"]),
+  tier: z.enum(["featured", "build", "prd"]),
   order: z.number(),
   status: z.enum(["Shipped", "PRD", "Case study", "Building"]),
   summary: z.string().max(160),
