@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
+import { NextLeapSection } from "@/components/NextLeapSection";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -128,6 +129,8 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
+
+        <NextLeapSection />
 
         <section className="mt-12 border-t border-border pt-8" aria-label="Elsewhere">
           <h2 className="font-heading text-h3 font-semibold text-foreground">
