@@ -54,7 +54,7 @@ export function Nav() {
             })}
             <a
               href="/resume.pdf"
-              download="Akash_Ali_Resume.pdf"
+              download="Sk_Akash_Ali_Resume.pdf"
               className={cn(
                 "ml-1 rounded border border-border px-2.5 py-1 font-mono text-xs text-muted-foreground",
                 "transition-colors hover:border-accent hover:text-accent",

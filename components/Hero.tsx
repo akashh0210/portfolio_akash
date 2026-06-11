@@ -49,7 +49,7 @@ export function Hero() {
               </Link>
               <a
                 href="/resume.pdf"
-                download="Akash_Ali_Resume.pdf"
+                download="Sk_Akash_Ali_Resume.pdf"
                 className={cn(
                   "rounded-md border border-border px-5 py-2.5 font-mono text-sm font-medium text-muted-foreground",
                   "motion-safe:transition-colors hover:border-accent hover:text-accent",

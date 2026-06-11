@@ -140,7 +140,7 @@ export default function AboutPage() {
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                {...("download" in rest && rest.download ? { download: "Akash_Ali_Resume.pdf" } : {})}
+                {...("download" in rest && rest.download ? { download: "Sk_Akash_Ali_Resume.pdf" } : {})}
                 className={cn(
                   "rounded border px-4 py-2 font-mono text-xs transition-colors",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
