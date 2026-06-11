@@ -44,7 +44,7 @@ const SHIPPING_LOG = [
   },
   {
     period: "Mar 2026",
-    title: "App Review Insights Analyser + Zomato Recommender",
+    title: "Groww App Review Insights Analyser + Zomato Recommender",
     detail: "Two full-stack AI tools shipped: review-to-insight pipeline (60s) and personalized restaurant recommendations (<2s).",
   },
   {

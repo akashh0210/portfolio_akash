@@ -61,11 +61,11 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Photo column — drop your photo at public/images/akash.jpg */}
+          {/* Photo column */}
           <div className="w-full flex-shrink-0 md:w-[240px] lg:w-[280px] motion-safe:animate-fade-in-up motion-safe:[animation-delay:120ms]">
             <div className="relative aspect-square overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
               <Image
-                src="/images/akash.jpg"
+                src="/images/Sk Akash_image.png"
                 alt="Sk Akash Ali"
                 fill
                 sizes="(max-width: 768px) 80vw, 280px"
