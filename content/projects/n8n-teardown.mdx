@@ -1,0 +1,45 @@
+---
+title: "n8n — Product Teardown"
+slug: "n8n-teardown"
+tier: "prd"
+order: 8
+status: "Case study"
+summary: "A product teardown of n8n, the open-source workflow automation platform — analysing its positioning, UX, growth loops, and competitive moat."
+role: "Product Analyst"
+timeframe: "Jun 2026"
+stack: ["Product Strategy", "Competitive Analysis", "UX Audit", "Growth Analysis"]
+tags: ["teardown", "automation", "PLG", "developer-tools"]
+metric:
+  value: "PLG"
+  label: "product-led growth model analysed end-to-end"
+outcome: "Delivered a structured teardown covering n8n's positioning vs Zapier/Make, its self-hosted moat, onboarding friction points, and growth loop design."
+links:
+  document: "/teardown/n8n_teardown.pdf"
+draft: false
+---
+
+## Problem
+
+n8n sits in a crowded automation space dominated by Zapier and Make (formerly Integromat). It has a unique self-hosted, open-source positioning — but the product surface is dense and the onboarding is notoriously steep. The question: is n8n winning despite its UX, or is it winning because of something structural that its competitors can't easily copy?
+
+## Hypothesis
+
+n8n's real moat is not the feature set — it's the self-hosting option, which unlocks a buyer segment (enterprises with data-residency requirements, developers who want full control) that Zapier structurally cannot serve. If that's true, the product gaps that look like weaknesses are actually deliberate trade-offs: complexity is acceptable because the target user is a technical operator, not a non-technical business user.
+
+## What I built
+
+A structured product teardown covering four lenses:
+
+**1. Positioning audit.** Where n8n sits vs Zapier, Make, and Activepieces on the buyer spectrum (non-technical → developer). How the messaging changes across landing page, docs, and pricing — and where it contradicts itself.
+
+**2. UX friction map.** The onboarding path from signup to first working workflow. Step count, drop-off points, and the specific moments where the canvas-based node editor creates confusion for first-time users.
+
+**3. Growth loop analysis.** How n8n's open-source model drives cloud sign-ups. The community flywheel, template marketplace contribution loop, and where the conversion from self-hosted to cloud is leaky.
+
+**4. Competitive moat assessment.** Why self-hosting is not just a feature but a structural wedge — and what n8n would need to do to expand the moat rather than defend it.
+
+## Outcome & learning
+
+The teardown confirmed the hypothesis: n8n's complexity is intentional product positioning, not a fixable UX debt. The most actionable gap identified was the template-to-workflow conversion path — users browse the template library but abandon before adapting templates to their use case. A guided "adapt this template" flow would reduce time-to-first-value without simplifying the core editor.
+
+Key learning: knowing your target user precisely enough to accept their tolerance for complexity is itself a product decision. n8n's willingness to be hard for non-technical users is what makes it defensible for technical ones.

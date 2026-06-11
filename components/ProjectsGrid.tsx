@@ -66,13 +66,27 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {visible.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              variant={project.tier === "featured" ? "featured" : "compact"}
-            />
-          ))}
+          {visible
+            .filter((p) => p.tier !== "prd" && p.status !== "PRD")
+            .map((project) => (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                variant={project.tier === "featured" ? "featured" : "compact"}
+              />
+            ))}
+        </div>
+      )}
+      {filter === "all" && visible.some((p) => p.tier === "prd" || p.status === "PRD") && (
+        <div className="mt-8 flex flex-col gap-3">
+          <p className="mb-1 font-mono text-[0.65rem] uppercase tracking-[0.1em] text-muted-foreground">
+            PM artifacts
+          </p>
+          {visible
+            .filter((p) => p.tier === "prd" || p.status === "PRD")
+            .map((project) => (
+              <PmArtifactCard key={project.slug} project={project} />
+            ))}
         </div>
       )}
     </div>

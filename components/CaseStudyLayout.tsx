@@ -71,7 +71,7 @@ export function CaseStudyLayout({ project, prev, next, children }: CaseStudyLayo
             />
           </div>
 
-          {project.links && (project.links.live || project.links.repo) && (
+          {project.links && (project.links.live || project.links.repo || project.links.document) && (
             <div className="mt-6 flex flex-wrap gap-3">
               {project.links.live && (
                 <Link
@@ -86,6 +86,20 @@ export function CaseStudyLayout({ project, prev, next, children }: CaseStudyLayo
                 >
                   View live
                 </Link>
+              )}
+              {project.links.document && (
+                <a
+                  href={project.links.document}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    "rounded border border-border px-4 py-2 font-mono text-xs text-muted-foreground",
+                    "hover:border-accent hover:text-accent transition-colors",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  )}
+                >
+                  View PDF
+                </a>
               )}
               {project.links.repo && (
                 <Link
