@@ -7,10 +7,10 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "AI PM and builder based in Bengaluru. I structure messy problems into crisp specs, then write the code to validate the solution.",
+    "AI PM and builder. I structure messy problems into crisp specs, then write the code to validate the solution.",
   openGraph: {
     title: "About — Sk Akash Ali",
-    description: "AI PM and builder based in Bengaluru.",
+    description: "AI PM and builder. Products that move metrics.",
     url: "/about",
   },
 };
@@ -34,24 +34,29 @@ const SHIPPING_LOG = [
     detail: "Automated discovery → qualification → outreach. Shipped v1.4 with a compliance-checked outreach UI.",
   },
   {
-    period: "May 2026",
+    period: "Jun 2026",
     title: "FreechargeBiz — AI Card Recommendation PRD",
     detail: "Full PRD + RICE backlog + prototype for a 5-layer AI recommendation engine with explainability at its core.",
   },
   {
-    period: "Apr 2026",
+    period: "May 2026",
     title: "Backbone — Calibration Layer for ChatGPT",
     detail: "Two-pass LLM system that surfaces reasoning and confidence. 91% calibrated answer rate on hand-labelled test set.",
   },
   {
-    period: "Mar 2026",
-    title: "Groww App Review Insights Analyser + Zomato Recommender",
-    detail: "Two full-stack AI tools shipped: review-to-insight pipeline (60s) and personalized restaurant recommendations (<2s).",
+    period: "Apr 2026",
+    title: "Groww App Review Insights Analyser",
+    detail: "Review-to-insight pipeline: sentiment analysis, theme clustering, and prioritised product gaps in under 60s.",
   },
   {
-    period: "Feb 2026",
+    period: "Apr 2026",
     title: "SBI Mutual Fund FAQ Chatbot",
     detail: "RAG pipeline over 2,916 FAQ chunks across four SBI fund schemes. Grounded, cited answers with sub-3s latency on Llama 3.",
+  },
+  {
+    period: "Mar 2026",
+    title: "Zomato AI Recommender",
+    detail: "Personalised restaurant recommendations powered by LLM reasoning over user preferences. Sub-2s response time.",
   },
 ] as const;
 
@@ -72,7 +77,7 @@ export default function AboutPage() {
       <Container size="reading">
         <header>
           <p className="font-mono text-eyebrow uppercase tracking-[0.12em] text-muted-foreground">
-            AI PM &amp; builder · Bengaluru
+            AI PM &amp; builder
           </p>
           <h1 className="mt-3 font-heading text-h1 font-semibold tracking-tight text-foreground">
             About
