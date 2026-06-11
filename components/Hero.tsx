@@ -12,7 +12,7 @@ export function Hero() {
           {/* Text column */}
           <div className="flex-1 min-w-0">
             <p className="font-mono text-eyebrow uppercase tracking-[0.12em] text-muted-foreground motion-safe:animate-fade-in-up motion-safe:[animation-delay:0ms]">
-              Available for AI PM roles · Remote
+              Available for AI PM roles
             </p>
 
             <h1 className="mt-4 font-heading text-hero font-semibold leading-[1.08] tracking-[-0.02em] text-foreground motion-safe:animate-fade-in-up motion-safe:[animation-delay:80ms]">

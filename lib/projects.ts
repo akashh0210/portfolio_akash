@@ -40,7 +40,7 @@ export function getFeaturedProjects(): Project[] {
 
 export function getPmProjects(): Project[] {
   return getAllProjects()
-    .filter((p) => p.tier === "prd" || p.status === "PRD")
+    .filter((p) => p.tier === "prd")
     .sort((a, b) => a.order - b.order);
 }
 

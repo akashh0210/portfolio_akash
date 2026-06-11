@@ -26,7 +26,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
     filter === "all"
       ? projects
       : filter === "prd"
-      ? projects.filter((p) => p.tier === "prd" || p.status === "PRD")
+      ? projects.filter((p) => p.tier === "prd")
       : projects.filter((p) => p.tier === filter);
 
   return (
@@ -77,13 +77,13 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
             ))}
         </div>
       )}
-      {filter === "all" && visible.some((p) => p.tier === "prd" || p.status === "PRD") && (
+      {filter === "all" && visible.some((p) => p.tier === "prd") && (
         <div className="mt-8 flex flex-col gap-3">
           <p className="mb-1 font-mono text-[0.65rem] uppercase tracking-[0.1em] text-muted-foreground">
             PM artifacts
           </p>
           {visible
-            .filter((p) => p.tier === "prd" || p.status === "PRD")
+            .filter((p) => p.tier === "prd")
             .map((project) => (
               <PmArtifactCard key={project.slug} project={project} />
             ))}
