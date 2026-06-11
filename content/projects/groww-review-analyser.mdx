@@ -1,5 +1,5 @@
 ---
-title: "Groww App Review Insights Analyser"
+title: "App Review Insights Analyser"
 slug: "groww-review-analyser"
 tier: "build"
 order: 6
@@ -14,13 +14,13 @@ metric:
   label: "review-to-product-insight pulse time"
 outcome: "Shipped a pipeline processing 5,000+ reviews into structured themes, severity buckets, and PM-ready insight cards in under 60 seconds."
 links:
-  repo: ""
+  repo: "https://github.com/akashh0210/M-3-Product-Review-Analyser"
 draft: false
 ---
 
 ## Problem
 
-App review analysis is a PM's least favourite chore: high volume, low signal density, and by the time you've read 300 reviews you've forgotten the first 200. Groww's Play Store page accumulates hundreds of reviews weekly — extracting product signals from them manually is a full afternoon's work.
+App review analysis is a PM's least favourite chore: high volume, low signal density, and by the time you've read 300 reviews you've forgotten the first 200. App Store and Play Store pages accumulate hundreds of reviews weekly — extracting product signals from them manually is a full afternoon's work.
 
 ## Hypothesis
 
@@ -28,7 +28,9 @@ A structured pipeline — scrape, cluster, summarise, prioritise — could reduc
 
 ## What I built
 
-A TypeScript + FastAPI pipeline scrapes reviews, passes them through a Groq-powered clustering step (theme extraction and severity classification), and generates a Streamlit dashboard with PM-ready insight cards. An MCP integration allows Claude to query the insight database conversationally — "what are the top 3 complaints this week?" returns a structured answer in seconds.
+A Node.js 20 TypeScript + FastAPI pipeline scrapes App Store and Google Play reviews, passes them through a Groq-powered clustering step (theme extraction and severity classification using `llama-3.3-70b`), and generates a Streamlit dashboard with PM-ready insight cards. A GitHub Actions workflow automates weekly runs and delivers reports via Markdown, email drafts, and Google Docs through an MCP integration.
+
+An MCP integration lets Claude query the insight database conversationally — "what are the top 3 complaints this week?" returns a structured answer in seconds. The tool includes automatic PII scrubbing at ingestion to keep user data clean. Deployed on Hugging Face Spaces.
 
 ## Outcome & learning
 

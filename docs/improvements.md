@@ -1,0 +1,2 @@
+1. Change the top left corner name and wherever there is a full name it should be "Sk Akash Ali"
+2. Whatever build and shipped you have done is it from your memory or verification of my github, if memory then give a thorough check of my github and then update that accordingly 

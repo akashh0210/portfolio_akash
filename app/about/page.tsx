@@ -44,13 +44,13 @@ const SHIPPING_LOG = [
   },
   {
     period: "Mar 2026",
-    title: "Groww Review Analyser + Zomato Recommender",
+    title: "App Review Insights Analyser + Zomato Recommender",
     detail: "Two full-stack AI tools shipped: review-to-insight pipeline (60s) and personalized restaurant recommendations (<2s).",
   },
   {
     period: "Feb 2026",
-    title: "Groww Mutual Fund FAQ Chatbot",
-    detail: "RAG pipeline over 2,916 FAQ chunks. Grounded, cited answers with sub-3s latency on Llama 3.",
+    title: "SBI Mutual Fund FAQ Chatbot",
+    detail: "RAG pipeline over 2,916 FAQ chunks across four SBI fund schemes. Grounded, cited answers with sub-3s latency on Llama 3.",
   },
 ] as const;
 

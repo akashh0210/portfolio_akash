@@ -3,18 +3,18 @@ title: "Backbone — Calibration Layer for ChatGPT"
 slug: "backbone"
 tier: "featured"
 order: 3
-status: "Case study"
+status: "Shipped"
 summary: "A two-pass LLM system that adds reasoning, confidence, and self-critique to any ChatGPT response — surfacing what the model doesn't know."
 role: "Builder · researcher"
 timeframe: "Apr 2026"
-stack: ["Python", "OpenAI", "Claude", "FastAPI", "Next.js"]
+stack: ["TypeScript", "React", "Groq", "Vite", "Vercel"]
 tags: ["LLM", "calibration", "reliability", "AI research"]
 metric:
   value: "91%"
   label: "calibrated answer rate on hand-labelled test set"
 outcome: "A two-pass calibration pipeline raised the calibrated answer rate from 61% to 91% on a 200-question test set, by adding structured self-critique before every final response."
 links:
-  repo: ""
+  repo: "https://github.com/akashh0210/ChatGPT_Prototype_BackboneAI_2"
 featured_order: 3
 draft: false
 ---
@@ -27,23 +27,25 @@ The north-star problem: can a system reliably signal its own uncertainty, so use
 
 ## Hypothesis
 
-A single-pass LLM prompt optimizes for sounding right. A two-pass system — where the model first drafts an answer and then audits that answer for assumptions, gaps, and confidence — should produce a better-calibrated final response.
+A single-pass LLM prompt optimizes for sounding right. A two-pass system — where a primary model first drafts an answer and a secondary model audits that answer for assumptions, gaps, and confidence — should produce a better-calibrated final response.
 
 The bet: self-critique reduces overconfident wrong answers more than it reduces confident correct answers. If that's true, a calibrated answer rate (defined as: the model's stated confidence matches its actual accuracy within ±15%) will improve significantly.
 
 ## What I built
 
-**Pass 1 — Draft generation.** A standard completion call to `gpt-4o`. Nothing changed here; the prompt is the user's original query.
+**Pass 1 — Draft generation.** A Groq API call using `llama-3.3-70b` generates the initial response to the user's query. Nothing special in the prompt — the user's question, verbatim.
 
-**Pass 2 — Calibration audit (Claude).** The draft is passed to a separate Claude call with a structured prompt:
+**Pass 2 — Calibration audit.** The draft is passed to a second Groq call using `llama-3.1-8b` (faster, lower cost) with a structured audit prompt:
 1. Identify every factual claim in the draft.
 2. Rate each claim: `high-confidence` / `uncertain` / `should-verify`.
 3. List the assumptions the draft makes implicitly.
 4. Write a revised response that preserves correct claims, hedges uncertain ones, and flags anything the user should verify independently.
 
-**Output format.** The API returns: `response` (the calibrated text), `confidence` (0–1), `claims` (a structured breakdown), `flags` (anything requiring user verification). A Next.js UI renders these with a visual confidence bar and expandable claims list.
+**Output format.** The API returns four trust signals rendered in the UI: a reasoning trace (collapsible steps), confidence markers (inline pills: HIGH/MEDIUM/UNVERIFIED), assumption surface (implicit context the model relied on), and a self-critique footer (the evaluator's summary). Built as a React + TypeScript + Vite frontend deployed on Vercel Edge Functions.
 
 **Evaluation method.** I hand-labelled 200 questions from three domains (recent events, technical how-tos, historical facts) as `answerable` or `should-hedge`. Calibrated answer rate = responses where the model's behaviour (confident vs. hedged) matched the label. Baseline (single-pass): 61%. Two-pass: 91%.
+
+Two prototypes shipped: BackboneAI_1 used xAI's Grok API; BackboneAI_2 migrated to Groq + Llama for better latency and open-weight reproducibility.
 
 ## Outcome & learning
 

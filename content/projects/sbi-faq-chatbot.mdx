@@ -1,0 +1,39 @@
+---
+title: "SBI Mutual Fund FAQ Chatbot"
+slug: "sbi-faq-chatbot"
+tier: "build"
+order: 5
+status: "Shipped"
+summary: "A RAG chatbot over SBI Mutual Fund's FAQ corpus — grounded, cited answers for four fund schemes with sub-3s latency."
+role: "Builder"
+timeframe: "Feb 2026"
+stack: ["Python", "Next.js", "FastAPI", "Groq", "ChromaDB"]
+tags: ["RAG", "chatbot", "fintech", "NLP"]
+metric:
+  value: "2,916"
+  label: "FAQ chunks indexed in vector store"
+outcome: "Shipped a RAG chatbot indexing 2,916 FAQ chunks across four SBI fund schemes, with citation-grounded responses and sub-3s latency on Llama 3."
+links:
+  repo: "https://github.com/akashh0210/M-2-RAG-based-Mutual-Fund-FAQ-Chatbot"
+draft: false
+---
+
+## Problem
+
+SBI Mutual Fund's FAQ content covers four schemes (Large Cap, Flexicap, ELSS Tax Saver, Equity Hybrid) across dozens of pages. Users asking scheme-specific questions get buried in search results or routed to generic support. Support volume for FAQ-answerable queries is high, and most of those queries have a correct answer sitting in a document somewhere.
+
+## Hypothesis
+
+A RAG pipeline over the structured FAQ corpus would let users ask natural-language questions and get grounded, cited answers — reducing support escalations for FAQ-answerable queries.
+
+## What I built
+
+A Python ingestion pipeline scraped and chunked the FAQ corpus into 2,916 entries, embedded them with BAAI/bge (768-dim vectors), and stored them in Chroma Cloud. A FastAPI backend (deployed on Hugging Face Spaces, 16GB Docker) retrieves the top-k relevant chunks and passes them with the query to Groq's Llama 3.3 70B for a grounded response. Every answer includes source attribution linking back to the original FAQ entry.
+
+A Next.js 15 frontend deployed on Vercel surfaces the chat interface. A GitHub Actions workflow refreshes the corpus daily — so if SBI updates a fund FAQ, the chatbot picks it up within 24 hours automatically.
+
+## Outcome & learning
+
+2,916 chunks indexed, sub-3-second response latency, answers grounded in retrieved context. Key learning: chunk size matters more than model choice for RAG quality — smaller, semantically coherent chunks produced noticeably better retrieval precision than larger splits.
+
+The daily corpus refresh via GitHub Actions was the highest-effort part of the build — but also what makes the system genuinely useful rather than a one-off demo. Stale data is the fastest way to lose user trust in a financial context.

@@ -29,7 +29,7 @@ export function Nav() {
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
             )}
           >
-            Akash Ali
+            Sk Akash Ali
           </Link>
 
           <div className="flex items-center gap-1">
