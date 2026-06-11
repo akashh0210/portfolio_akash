@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { NextLeapSection } from "@/components/NextLeapSection";
+import { SkillsSection } from "@/components/SkillsSection";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -115,6 +116,8 @@ export default function AboutPage() {
             ))}
           </ul>
         </section>
+
+        <SkillsSection />
 
         <section className="mt-12" aria-label="Shipping log">
           <h2 className="font-heading text-h3 font-semibold text-foreground">

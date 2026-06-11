@@ -6,6 +6,7 @@ import { WhatIDo } from "@/components/WhatIDo";
 import { ProjectCard } from "@/components/ProjectCard";
 import { CurrentlyBuilding } from "@/components/CurrentlyBuilding";
 import { PmArtifactCard } from "@/components/PmArtifactCard";
+import { ContactCta } from "@/components/ContactCta";
 import { Container } from "@/components/Container";
 import { cn } from "@/lib/utils";
 
@@ -125,6 +126,37 @@ export default function Home() {
         </section>
       )}
 
+      {/* NextLeap credential strip */}
+      <section className="border-t border-border py-10">
+        <Container>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 font-mono text-[0.65rem] font-medium text-emerald-600 dark:text-emerald-400">
+                Fellowship
+              </span>
+              <span className="text-sm font-medium text-foreground">
+                NextLeap PM Fellowship
+              </span>
+              <span className="hidden font-mono text-[0.65rem] text-muted-foreground sm:inline">
+                · Mission Accomplished · 3 milestones
+              </span>
+            </div>
+            <a
+              href="/Nextleap_certificate/Mission_Accomplished_PM_Fellowship_certificate.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "font-mono text-xs text-accent hover:underline",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+              )}
+            >
+              View certificate ↗
+            </a>
+          </div>
+        </Container>
+      </section>
+
+      <ContactCta />
       <CurrentlyBuilding />
     </>
   );

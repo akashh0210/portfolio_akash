@@ -26,6 +26,11 @@ const SECTIONS = [
         detail:
           "Full-stack Next.js apps, end-to-end type safety, Zod validation. Everything in this portfolio.",
       },
+      {
+        name: "SQL",
+        detail:
+          "Data querying, aggregation, and analytics across relational datasets. Used alongside Pandas for product analytics work.",
+      },
     ],
   },
   {
@@ -101,6 +106,26 @@ const SECTIONS = [
       { name: "Structured PRDs", detail: "Problem → Hypothesis → Scope → Success metrics → Risks. The FreechargeBiz PRD follows this template." },
       { name: "Notion", detail: "Docs, project notes, research logs. Markdown-native." },
       { name: "Linear", detail: "Issue tracking for anything with more than three moving parts." },
+    ],
+  },
+  {
+    heading: "Data & analytics",
+    items: [
+      { name: "Power BI", detail: "Dashboards and reports for product and business metrics. Connects directly to SQL and Excel data sources." },
+      { name: "Google Analytics", detail: "Funnel analysis, event tracking, and retention metrics. Used for product health monitoring." },
+      { name: "Pandas", detail: "Data wrangling and analysis in Python. Core tool for processing review datasets and log files." },
+      { name: "Excel (Advanced)", detail: "Pivot tables, VLOOKUP/XLOOKUP, and financial modelling. Still the fastest tool for one-off analysis." },
+      { name: "Google APIs", detail: "Sheets, Drive, and Analytics APIs for lightweight data pipelines and automated reporting." },
+      { name: "M365", detail: "Teams, SharePoint, and Excel for collaborative product documentation and stakeholder communication." },
+    ],
+  },
+  {
+    heading: "Automation",
+    items: [
+      { name: "n8n", detail: "Self-hosted workflow automation. Used for multi-step pipelines that need custom logic between nodes." },
+      { name: "Zapier", detail: "Rapid no-code automation for connecting SaaS tools. Fastest path to a working integration proof-of-concept." },
+      { name: "Replit", detail: "Cloud-based coding environment for quick prototypes and shareable demos without local setup." },
+      { name: "Streamlit", detail: "Python-native UI for internal data tools and demo interfaces. Used in the Groww review analyser pipeline." },
     ],
   },
 ] as const;
