@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Container } from "@/components/Container";
 import { MetadataBar } from "@/components/MetadataBar";
 import { MetricBlock } from "@/components/MetricBlock";
+import { ReadingProgress } from "@/components/ReadingProgress";
 import type { Project } from "@/lib/schema";
 
 const STATUS_STYLES: Record<string, string> = {
@@ -23,6 +24,7 @@ interface CaseStudyLayoutProps {
 export function CaseStudyLayout({ project, prev, next, children }: CaseStudyLayoutProps) {
   return (
     <article>
+      <ReadingProgress />
       <header className="border-b border-border py-16">
         <Container size="reading">
           <p className="font-mono text-eyebrow uppercase tracking-[0.12em] text-muted-foreground">

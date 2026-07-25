@@ -24,7 +24,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
         href={href}
         className={cn(
           "group flex flex-col gap-3 rounded-lg border border-border bg-card p-5",
-          "hover:border-accent/40 motion-safe:transition-all motion-safe:duration-150 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-sm",
+          "hover:border-accent/40 motion-safe:transition-all motion-safe:duration-200 motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-md",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         )}
       >
@@ -68,8 +68,8 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
     <Link
       href={href}
       className={cn(
-        "group flex flex-col gap-5 rounded-lg border border-border p-6",
-        "hover:border-accent/40 motion-safe:transition-all motion-safe:duration-150 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md",
+        "group flex flex-col gap-5 rounded-lg border border-border bg-card p-6",
+        "hover:border-accent/40 motion-safe:transition-all motion-safe:duration-200 motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-xl",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         "sm:p-8"
       )}

@@ -5,9 +5,19 @@ import { Container } from "@/components/Container";
 
 export function Hero() {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="relative overflow-hidden py-20 sm:py-28">
+      {/* Subtle dot-grid texture */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, currentColor 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
       <Container>
-        <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-16 lg:gap-20">
+        <div className="relative z-10 flex flex-col gap-10 md:flex-row md:items-center md:gap-16 lg:gap-20">
 
           {/* Text column */}
           <div className="flex-1 min-w-0">

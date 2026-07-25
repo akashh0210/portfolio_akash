@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 import { NextLeapSection } from "@/components/NextLeapSection";
 import { SkillsSection } from "@/components/SkillsSection";
+import { FadeIn } from "@/components/FadeIn";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -85,61 +86,68 @@ export default function AboutPage() {
           </h1>
         </header>
 
-        <section className="mt-8" aria-label="Introduction">
-          <p className="text-base leading-7 text-foreground/90">
-            I&apos;m an AI PM and builder. I work at the intersection of product strategy
-            and engineering — structuring ambiguous problems into crisp specs, then
-            writing the code to validate the solution before anyone else wastes time on it.
-          </p>
-          <p className="mt-4 text-base leading-7 text-foreground/90">
-            My background is split between product management (PRDs, prioritization,
-            stakeholder alignment) and hands-on building (full-stack apps, LLM pipelines,
-            RAG systems). The combination means I can go from a messy product hypothesis
-            to a working, measurable demo faster than most teams can finish their kickoff call.
-          </p>
-        </section>
+        <FadeIn>
+          <section className="mt-8" aria-label="Introduction">
+            <p className="text-base leading-7 text-foreground/90">
+              I&apos;m an AI PM and builder. I work at the intersection of product strategy
+              and engineering — structuring ambiguous problems into crisp specs, then
+              writing the code to validate the solution before anyone else wastes time on it.
+            </p>
+            <p className="mt-4 text-base leading-7 text-foreground/90">
+              My background is split between product management (PRDs, prioritization,
+              stakeholder alignment) and hands-on building (full-stack apps, LLM pipelines,
+              RAG systems). The combination means I can go from a messy product hypothesis
+              to a working, measurable demo faster than most teams can finish their kickoff call.
+            </p>
+          </section>
+        </FadeIn>
 
-        <section className="mt-12" aria-label="How I work">
-          <h2 className="font-heading text-h3 font-semibold text-foreground">
-            How I work
-          </h2>
-          <ul className="mt-4 space-y-3">
-            {[
-              "Structure first. I write the PRD before building the prototype. A one-page problem framing with explicit tradeoffs saves more time than any retrospective.",
-              "Ship early. A rough working demo beats a polished mockup for validation. The goal is to be wrong fast, not right eventually.",
-              "Measure honestly. If the metric did not move, that is the learning. I document what worked, what did not, and what I would do differently.",
-            ].map((item) => (
-              <li key={item} className="flex gap-3 text-sm leading-6 text-foreground/90">
-                <span className="mt-0.5 font-mono text-accent" aria-hidden="true">—</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <FadeIn delay={80}>
+          <section className="mt-12" aria-label="How I work">
+            <h2 className="font-heading text-h3 font-semibold text-foreground">
+              How I work
+            </h2>
+            <ul className="mt-4 space-y-3">
+              {[
+                "Structure first. I write the PRD before building the prototype. A one-page problem framing with explicit tradeoffs saves more time than any retrospective.",
+                "Ship early. A rough working demo beats a polished mockup for validation. The goal is to be wrong fast, not right eventually.",
+                "Measure honestly. If the metric did not move, that is the learning. I document what worked, what did not, and what I would do differently.",
+              ].map((item) => (
+                <li key={item} className="flex gap-3 text-sm leading-6 text-foreground/90">
+                  <span className="mt-0.5 font-mono text-accent" aria-hidden="true">—</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </FadeIn>
 
-        <SkillsSection />
+        <FadeIn><SkillsSection /></FadeIn>
 
-        <section className="mt-12" aria-label="Shipping log">
-          <h2 className="font-heading text-h3 font-semibold text-foreground">
-            Shipping log
-          </h2>
-          <div className="mt-4 space-y-5">
-            {SHIPPING_LOG.map(({ period, title, detail }) => (
-              <div key={title} className="grid grid-cols-[5rem_1fr] gap-4">
-                <span className="font-mono text-eyebrow text-muted-foreground pt-0.5">
-                  {period}
-                </span>
-                <div>
-                  <p className="text-sm font-medium text-foreground">{title}</p>
-                  <p className="mt-0.5 text-sm leading-5 text-muted-foreground">{detail}</p>
+        <FadeIn>
+          <section className="mt-12" aria-label="Shipping log">
+            <h2 className="font-heading text-h3 font-semibold text-foreground">
+              Shipping log
+            </h2>
+            <div className="mt-4 space-y-5">
+              {SHIPPING_LOG.map(({ period, title, detail }) => (
+                <div key={title} className="grid grid-cols-[5rem_1fr] gap-4">
+                  <span className="font-mono text-eyebrow text-muted-foreground pt-0.5">
+                    {period}
+                  </span>
+                  <div>
+                    <p className="text-sm font-medium text-foreground">{title}</p>
+                    <p className="mt-0.5 text-sm leading-5 text-muted-foreground">{detail}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        </FadeIn>
 
-        <NextLeapSection />
+        <FadeIn><NextLeapSection /></FadeIn>
 
+        <FadeIn>
         <section className="mt-12 border-t border-border pt-8" aria-label="Elsewhere">
           <h2 className="font-heading text-h3 font-semibold text-foreground">
             Elsewhere
@@ -165,6 +173,7 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
+        </FadeIn>
       </Container>
     </div>
   );
