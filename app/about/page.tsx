@@ -32,6 +32,16 @@ const jsonLd = {
 const SHIPPING_LOG = [
   {
     period: "Jun 2026",
+    title: "Invoice AI",
+    detail: "Voice-or-type invoice generator. AI extracts line items from natural language, blanks missing fields rather than guessing, and exports server-rendered PDFs with rupee-symbol support.",
+  },
+  {
+    period: "Jun 2026",
+    title: "Spotify Resonance — AI Discovery Prototype",
+    detail: "Scraped 5,708 Spotify reviews to quantify discovery friction, then shipped a feature prototype with NL mood input and a 5-level novelty dial inside a pixel-accurate Spotify shell.",
+  },
+  {
+    period: "Jun 2026",
     title: "Campayn — Brand Discovery Pipeline",
     detail: "Automated discovery → qualification → outreach. Shipped v1.4 with a compliance-checked outreach UI.",
   },

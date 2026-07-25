@@ -1,0 +1,38 @@
+---
+title: "Invoice AI"
+slug: "invoice-ai"
+tier: "build"
+order: 4
+status: "Shipped"
+summary: "Voice-or-type invoice generator for Indian freelancers — AI extracts messy descriptions into editable invoices, server-rendered PDFs, and shareable links."
+role: "Builder"
+timeframe: "Jun 2026"
+stack: ["Next.js", "TypeScript", "Firebase", "Vercel AI SDK", "React PDF"]
+tags: ["productivity", "AI", "voice", "fintech"]
+metric:
+  value: "< 5s"
+  label: "from spoken description to shareable invoice"
+outcome: "Shipped a full-stack invoice tool with Firebase auth, owner-scoped shareable links, and server-rendered PDFs — never fabricates missing fields, surfaces gaps as clarifying questions instead."
+links:
+  live: "https://invoice-ai-navy.vercel.app"
+  repo: "https://github.com/akashh0210/invoice_AI"
+draft: false
+---
+
+## Problem
+
+Indian freelancers and solopreneurs bill a handful of clients a month but are stuck between two bad options: enterprise accounting software designed for much larger teams, or manually typed Word documents. The real source of truth is usually a 30-second voice note with the client name, what was delivered, and the amount — structured billing starts from there.
+
+## Hypothesis
+
+A voice-first extraction layer that surfaces missing fields as clarifying questions — rather than hallucinating values or leaving placeholders — would produce correct invoices faster than any form-filling approach. The trust problem in AI tools is almost always fabrication; a system that knows what it doesn't know is more useful than one that guesses.
+
+## What I built
+
+A Next.js 16 app with two input modes: speak your invoice via the Web Speech API, or type a messy description in plain English. The Vercel AI SDK extracts structured data — line items, quantities, unit prices, dates, client name — from the raw input. Fields the AI couldn't confidently fill are highlighted and accompanied by a specific clarifying question, not a blank or a guess.
+
+An edit-ratio counter shows how many AI-filled fields the user changed — a live proxy for model confidence. Invoices are stored in Firestore under verified Firebase Auth sessions; ownership checks run server-side from session cookies, not client claims. PDF export uses `@react-pdf/renderer` with embedded fonts for correct rupee symbol rendering. Each invoice gets a shareable view-only URL with an unguessable ID. All monetary arithmetic is recomputed server-side — the AI extraction result is never trusted for final totals.
+
+## Outcome & learning
+
+Live on Vercel. The deliberate non-fabrication design turned out to be the most important product decision: users trusted the output precisely because they could see what the AI hadn't filled in. The edit-ratio counter is a signal worth surfacing more prominently in v2 — it tells you not just what changed but how much the user had to do. A lower ratio over time would be the real north-star metric for model improvement.

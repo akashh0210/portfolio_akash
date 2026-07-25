@@ -1,0 +1,42 @@
+---
+title: "Spotify Resonance — AI Music Discovery"
+slug: "spotify-resonance"
+tier: "featured"
+order: 3
+status: "Shipped"
+summary: "Scraped 5,708 Spotify reviews to map discovery friction, then built a feature prototype with NL mood input and a 5-level novelty dial."
+role: "Builder"
+timeframe: "Jun 2026"
+stack: ["Python", "Next.js", "FastAPI", "Gemini 2.5 Flash", "Streamlit", "ChromaDB", "Groq"]
+tags: ["user-research", "LLM", "product-prototype", "NLP", "music"]
+metric:
+  value: "5,708"
+  label: "user reviews analyzed to validate and inform the feature design"
+outcome: "Both apps live. 69.4% of reviews flagged discovery friction — that single finding drove the entire feature design. Community intelligence from 5,708 reviews now baked into every recommendation call."
+links:
+  live: "https://spotify-resonance.vercel.app"
+  repo: "https://github.com/akashh0210/spotify-resonance"
+draft: false
+---
+
+## Problem
+
+In interviews, 5 of 6 Spotify users said they discover music outside the app — on Instagram Reels, YouTube, from friends — and use Spotify only as a playback library. The question was whether this was a real pattern or a small-sample fluke.
+
+To find out, I scraped 7,431 raw reviews from four sources: Google Play (3,169), App Store (2,500), Reddit (1,735), and Spotify's Community Forum (27). After deduplication and normalization, 5,708 reviews were LLM-tagged with a closed theme taxonomy (10 themes, 6 user segments). The signal was consistent: **69.4% of reviews were discovery-related; 56% of the corpus was negative sentiment.** The top themes — recommendation repetition, generic playlists, autoplay loop — all pointed at the same root cause: collaborative filtering optimizes for familiarity, not intent. There is no mechanism to say "something for a late-night drive in the rain."
+
+## Hypothesis
+
+A natural language interface with explicit novelty control converts passive scroll-and-hope into an active discovery tool. Baking the community intelligence from 5,708 reviews into the system prompt — rather than relying on individual listening history — grounds recommendations in real user frustration patterns rather than generic genre matching.
+
+## What I built
+
+**Part 1 — Review Analysis Engine (Python + Streamlit):** A six-stage pipeline: `scrape → clean → tag (Groq llama-3.1-8b) → embed (sentence-transformers all-MiniLM-L6-v2 → ChromaDB) → aggregate → RAG answers (Groq llama-3.3-70b)`. The pipeline answers six PM strategy questions with cited evidence — not summaries, actual retrieved review text. Re-runnable: point it at any Play Store app ID or review CSV and regenerate all insights end-to-end. Live at Streamlit Community Cloud.
+
+**Part 2 — Resonance Prototype (Next.js 14 + FastAPI):** A Spotify feature prototype built inside a pixel-accurate shell — the TopBar, Sidebar, and NowPlayingBar are indistinguishable from the real Spotify Web Player because the point is that this *is* a Spotify feature, not a separate app. Type your mood in plain words, pick a novelty level (1 Comfort → 5 Adventurous), get 8 tracks with per-track reasoning from Gemini 2.5 Flash in JSON mode. iTunes Search API as a free fallback for album art and 30-second preview URLs — works without Spotify credentials. A GitHub Actions cron pings the Render backend every ~12 minutes to eliminate cold-start latency. Competitor comparison: Spotify's Prompted Playlist requires Premium and offers no novelty control or per-track explanation. Resonance is free, global, and explains every pick.
+
+## Outcome & learning
+
+Both apps are live: the research dashboard surfaces the data, the prototype shows the product response. The single most important design decision was baking the community intelligence statically into the system prompt rather than retrieving it dynamically — this made it stateless, fast, and permanently informed by the voice of 5,708 users.
+
+The novelty dial was the product insight that came directly from the research: users don't want more music pushed at them, they want a mechanism to control how far outside their comfort zone to push. A 5-level explicit dial is a more honest product than a vague "explore" button — and the data showed users wanted that honesty.

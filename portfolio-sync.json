@@ -19,6 +19,14 @@
     {
       "repo": "akashh0210/subspace-teardown-akash",
       "slug": "subspace-teardown"
+    },
+    {
+      "repo": "akashh0210/invoice_AI",
+      "slug": "invoice-ai"
+    },
+    {
+      "repo": "akashh0210/spotify-resonance",
+      "slug": "spotify-resonance"
     }
   ]
 }
