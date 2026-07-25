@@ -1,0 +1,35 @@
+name: Sync Projects from GitHub
+
+on:
+  workflow_dispatch: # manual "Run workflow" button in GitHub Actions UI
+  schedule:
+    - cron: "0 8 * * 1" # every Monday at 08:00 UTC
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # needed to commit updated MDX files back to repo
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run sync script
+        run: node scripts/sync-github-projects.mjs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit any changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/projects/
+          git diff --staged --quiet || git commit -m "chore(sync): auto-update project links from GitHub"
+          git push

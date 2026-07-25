@@ -1,0 +1,24 @@
+{
+  "repos": [
+    {
+      "repo": "akashh0210/campayn-outreach-system",
+      "slug": "campayn-pipeline"
+    },
+    {
+      "repo": "akashh0210/ChatGPT_Prototype_BackboneAI_2",
+      "slug": "backbone"
+    },
+    {
+      "repo": "akashh0210/M-1-Zomato-AI",
+      "slug": "zomato-recommender"
+    },
+    {
+      "repo": "akashh0210/M-2-RAG-based-Mutual-Fund-FAQ-Chatbot",
+      "slug": "sbi-faq-chatbot"
+    },
+    {
+      "repo": "akashh0210/subspace-teardown-akash",
+      "slug": "subspace-teardown"
+    }
+  ]
+}
